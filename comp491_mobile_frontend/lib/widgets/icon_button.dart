@@ -14,8 +14,8 @@ class IconButtonWidget extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: 30.w,
-        height: 30.w,
+        width: 24.w,
+        height: 24.w,
         child: Image.asset(asset ?? 'assets/icons/leftArrowDark.png'),
       ),
     );
