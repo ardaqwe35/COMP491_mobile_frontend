@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:comp491_mobile_frontend/constants/app_colors.dart';
 import 'package:comp491_mobile_frontend/constants/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -15,8 +16,9 @@ class TabbarItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: AppColors.white,
       width: 125.w,
-      height: 80.h,
+      height: 96.h,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,

@@ -2,7 +2,10 @@ import 'package:comp491_mobile_frontend/constants/app_colors.dart';
 import 'package:comp491_mobile_frontend/constants/text_styles.dart';
 import 'package:comp491_mobile_frontend/widgets/back_button.dart';
 import 'package:comp491_mobile_frontend/widgets/main_button.dart';
+import 'package:comp491_mobile_frontend/widgets/post_widget.dart';
+import 'package:comp491_mobile_frontend/widgets/search_widget.dart';
 import 'package:comp491_mobile_frontend/widgets/tabbar_button.dart';
+import 'package:comp491_mobile_frontend/widgets/tabbar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -38,18 +41,33 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
               ///Setting font does not change with system font size
               data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
               child: Scaffold(
+                backgroundColor: AppColors.backgroundColor,
                 body: Container(
                   width: 375.w,
                   height: 812.h,
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      BackButtonWidget(),
-                      TabbarItemWidget(
-                          asset: 'assets/icons/homeDark.png', text: "Home"),
+                      SizedBox(
+                        height: 72.h,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 24.w),
+                        child: SearchWidget(),
+                      ),
+                      SizedBox(
+                        height: 24.h,
+                      ),
+                      PostWidget(
+                          type: PostType.assetAndText,
+                          asset: "assets/icons/camera.png",
+                          text: "SDFGHFJK",
+                          profileName: "asdsad",
+                          profileUrl: "asd"),
+                      Spacer(),
+                      TabbarWidget(),
                     ],
                   ),
-                  color: Colors.white,
                 ),
               ),
             );

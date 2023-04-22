@@ -29,99 +29,126 @@ class PostWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 327.w,
+      width: 375.w,
       height: 475.h,
       child: Column(
         children: [
+          Container(
+            width: 375.w,
+            height: 1,
+            decoration: BoxDecoration(
+                color: AppColors.darkBackgroundColor.withOpacity(0.3)),
+          ),
+          SizedBox(
+            height: 12.h,
+          ),
           /* top row */
-          Row(
-            children: [
-              Image.asset(
-                profileAsset ?? 'assets/icons/user.png',
-                width: 24.w,
-                height: 24.w,
-              ),
-              SizedBox(
-                width: 8.w,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  /* username and date text */
-                  Text(
-                    "@fluffy",
-                    style: TextStyles.mainTextStyle.copyWith(fontSize: 10.sp),
-                  ),
-                  Text(
-                    "5d",
-                    textAlign: TextAlign.start,
-                    style: TextStyles.mainTextStyle.copyWith(fontSize: 10.sp),
-                  ),
-                ],
-              ),
-              const Spacer(),
-              MainButton(
-                  width: 70.w,
-                  height: 28.h,
-                  label: 'Gild',
-                  labelStyle: TextStyles.mainTextStyle.copyWith(
-                    fontSize: 14.sp,
-                    color: AppColors.white,
-                  ),
-                  verticalPadding: EdgeInsets.zero,
-                  onTap: () {},
-                  isDisable: false),
-            ],
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 24.w),
+            child: Row(
+              children: [
+                Image.asset(
+                  profileAsset ?? 'assets/icons/user.png',
+                  width: 24.w,
+                  height: 24.w,
+                ),
+                SizedBox(
+                  width: 8.w,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    /* username and date text */
+                    Text(
+                      "@fluffy",
+                      style: TextStyles.mainTextStyle.copyWith(fontSize: 10.sp),
+                    ),
+                    Text(
+                      "5d",
+                      textAlign: TextAlign.start,
+                      style: TextStyles.mainTextStyle.copyWith(fontSize: 10.sp),
+                    ),
+                  ],
+                ),
+                const Spacer(),
+                MainButton(
+                    width: 70.w,
+                    height: 28.h,
+                    label: 'Gild',
+                    labelStyle: TextStyles.mainTextStyle.copyWith(
+                      fontSize: 14.sp,
+                      color: AppColors.white,
+                    ),
+                    verticalPadding: EdgeInsets.zero,
+                    onTap: () {},
+                    isDisable: false),
+              ],
+            ),
           ),
           SizedBox(
             height: 20.h,
           ),
           /* content area */
-          Column(
-            children: [
-              Container(
-                width: 327.h,
-                height: 327.h,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.sp),
-                ),
-                child: ContentWidget(
-                  type: type,
-                  asset: asset,
-                  text: text,
-                ),
-              )
-            ],
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 24.w),
+            child: Column(
+              children: [
+                Container(
+                  width: 327.h,
+                  height: 327.h,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.sp),
+                  ),
+                  child: ContentWidget(
+                    type: type,
+                    asset: asset,
+                    text: text,
+                  ),
+                )
+              ],
+            ),
           ),
           /* bottom row */
-          Row(
-            children: [
-              IconButtonWidget(
-                asset: 'assets/icons/messageDark.png',
-                onTap: () {},
-              ),
-              SizedBox(
-                width: 24.w,
-              ),
-              IconButtonWidget(
-                asset: 'assets/icons/heartDark.png',
-                onTap: () {},
-              ),
-              SizedBox(
-                width: 183.w,
-              ),
-              IconButtonWidget(
-                asset: 'assets/icons/downArrowDark.png',
-                onTap: () {},
-              ),
-              SizedBox(
-                width: 24.w,
-              ),
-              IconButtonWidget(
-                asset: 'assets/icons/upRightArrowDark.png',
-                onTap: () {},
-              ),
-            ],
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 24.w),
+            child: Row(
+              children: [
+                IconButtonWidget(
+                  asset: 'assets/icons/messageDark.png',
+                  onTap: () {},
+                ),
+                SizedBox(
+                  width: 24.w,
+                ),
+                IconButtonWidget(
+                  asset: 'assets/icons/heartDark.png',
+                  onTap: () {},
+                ),
+                SizedBox(
+                  width: 183.w,
+                ),
+                IconButtonWidget(
+                  asset: 'assets/icons/downArrowDark.png',
+                  onTap: () {},
+                ),
+                SizedBox(
+                  width: 24.w,
+                ),
+                IconButtonWidget(
+                  asset: 'assets/icons/upRightArrowDark.png',
+                  onTap: () {},
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 12.h,
+          ),
+          Container(
+            width: 375.w,
+            height: 1,
+            decoration: BoxDecoration(
+                color: AppColors.darkBackgroundColor.withOpacity(0.3)),
           ),
         ],
       ),
