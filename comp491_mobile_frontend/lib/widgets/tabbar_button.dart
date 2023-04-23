@@ -10,40 +10,48 @@ import 'package:get/get.dart';
 class TabbarItemWidget extends StatelessWidget {
   final String asset;
   final String text;
+  final VoidCallback onTap;
 
-  const TabbarItemWidget({super.key, required this.asset, required this.text});
+  const TabbarItemWidget(
+      {super.key,
+      required this.asset,
+      required this.text,
+      required this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: AppColors.white,
-      width: 125.w,
-      height: 96.h,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          SizedBox(
-            height: 12.h,
-          ),
-          Image.asset(
-            asset,
-            width: 30.w,
-            height: 30.w,
-          ),
-          SizedBox(
-            height: 11.h,
-          ),
-          Container(
-            width: 100.w,
-            height: 16.h,
-            child: AutoSizeText(
-              text,
-              textAlign: TextAlign.center,
-              style: TextStyles.mainTextStyle.copyWith(fontSize: 12.sp),
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        color: AppColors.white,
+        width: 125.w,
+        height: 96.h,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: 12.h,
             ),
-          )
-        ],
+            Image.asset(
+              asset,
+              width: 30.w,
+              height: 30.w,
+            ),
+            SizedBox(
+              height: 11.h,
+            ),
+            Container(
+              width: 100.w,
+              height: 16.h,
+              child: AutoSizeText(
+                text,
+                textAlign: TextAlign.center,
+                style: TextStyles.mainTextStyle.copyWith(fontSize: 12.sp),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

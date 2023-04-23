@@ -1,5 +1,8 @@
 import 'package:comp491_mobile_frontend/constants/app_colors.dart';
+import 'package:comp491_mobile_frontend/constants/routes.dart';
 import 'package:comp491_mobile_frontend/constants/text_styles.dart';
+import 'package:comp491_mobile_frontend/screens/create_screen.dart';
+import 'package:comp491_mobile_frontend/screens/home_screen.dart';
 import 'package:comp491_mobile_frontend/widgets/back_button.dart';
 import 'package:comp491_mobile_frontend/widgets/main_button.dart';
 import 'package:comp491_mobile_frontend/widgets/post_widget.dart';
@@ -40,53 +43,28 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             return MediaQuery(
               ///Setting font does not change with system font size
               data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-              child: Scaffold(
-                backgroundColor: AppColors.backgroundColor,
-                body: Container(
-                  width: 375.w,
-                  height: 812.h,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        height: 72.h,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 24.w),
-                        child: SearchWidget(),
-                      ),
-                      SizedBox(
-                        height: 24.h,
-                      ),
-                      PostWidget(
-                          type: PostType.assetAndText,
-                          asset: "assets/icons/camera.png",
-                          text: "SDFGHFJK",
-                          profileName: "asdsad",
-                          profileUrl: "asd"),
-                      Spacer(),
-                      TabbarWidget(),
-                    ],
-                  ),
-                ),
-              ),
+              child: widget!,
             );
           },
           theme: ThemeData(
-            appBarTheme: const AppBarTheme(),
             brightness: Brightness.light,
           ),
           darkTheme: ThemeData.dark(),
+          initialRoute: Routes.homeScreen,
           debugShowCheckedModeBanner: false,
           defaultTransition: Transition.rightToLeft,
           transitionDuration: const Duration(
             milliseconds: 300,
           ),
           getPages: [
-            // GetPage(
-            //   name: Routes.splash,
-            //   page: () => const SplashScreen(),
-            // ),
+            GetPage(
+              name: Routes.createScreen,
+              page: () => const CreateScreen(),
+            ),
+            GetPage(
+              name: Routes.homeScreen,
+              page: () => const HomeScreen(),
+            ),
           ],
         ),
       ),

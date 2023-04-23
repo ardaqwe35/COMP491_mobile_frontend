@@ -1,3 +1,4 @@
+import 'package:comp491_mobile_frontend/screens/create_screen.dart';
 import 'package:comp491_mobile_frontend/widgets/tabbar_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -14,8 +15,10 @@ class TabbarWidget extends StatelessWidget {
       children: [
         for (int i = 0; i < 3; i++)
           TabbarItemWidget(
-              asset: tabbarController.getTabbarItemAsset(i),
-              text: tabbarController.getTabbarItemString(i))
+            asset: tabbarController.getTabbarItemAsset(i),
+            text: tabbarController.getTabbarItemString(i),
+            onTap: tabbarController.getTabbarItemOnTap(i),
+          )
       ],
     );
   }
@@ -45,6 +48,21 @@ class TabbarController extends GetxController {
         return 'Profile';
       default:
         return 'Home';
+    }
+  }
+
+  VoidCallback getTabbarItemOnTap(int index) {
+    switch (index) {
+      case 0:
+        return () {};
+      case 1:
+        return () {
+          Get.to(CreateScreen());
+        };
+      case 2:
+        return () {};
+      default:
+        return () {};
     }
   }
 }
