@@ -1,3 +1,4 @@
+import 'package:comp491_mobile_frontend/controllers/root_screen_controller.dart';
 import 'package:comp491_mobile_frontend/screens/create_screen.dart';
 import 'package:comp491_mobile_frontend/widgets/tabbar_button.dart';
 import 'package:flutter/material.dart';
@@ -6,20 +7,25 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 
 class TabbarWidget extends StatelessWidget {
-  const TabbarWidget({super.key});
+  final RootScreenController controller;
+  const TabbarWidget({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
     TabbarController tabbarController = Get.put(TabbarController());
-    return Row(
-      children: [
-        for (int i = 0; i < 3; i++)
-          TabbarItemWidget(
-            asset: tabbarController.getTabbarItemAsset(i),
-            text: tabbarController.getTabbarItemString(i),
-            onTap: tabbarController.getTabbarItemOnTap(i),
-          )
-      ],
+    return GestureDetector(
+      onTapDown: (tapDownDetails) =>
+          controller.handleTapDown(tapDownDetails, context),
+      child: Row(
+        children: [
+          for (int i = 0; i < 3; i++)
+            TabbarItemWidget(
+              asset: tabbarController.getTabbarItemAsset(i),
+              text: tabbarController.getTabbarItemString(i),
+              onTap: tabbarController.getTabbarItemOnTap(i),
+            )
+        ],
+      ),
     );
   }
 }

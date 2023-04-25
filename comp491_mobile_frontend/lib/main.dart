@@ -3,6 +3,8 @@ import 'package:comp491_mobile_frontend/constants/routes.dart';
 import 'package:comp491_mobile_frontend/constants/text_styles.dart';
 import 'package:comp491_mobile_frontend/screens/create_screen.dart';
 import 'package:comp491_mobile_frontend/screens/home_screen.dart';
+import 'package:comp491_mobile_frontend/screens/root_screen.dart';
+import 'package:comp491_mobile_frontend/screens/settings_screen.dart';
 import 'package:comp491_mobile_frontend/widgets/back_button.dart';
 import 'package:comp491_mobile_frontend/widgets/main_button.dart';
 import 'package:comp491_mobile_frontend/widgets/post_widget.dart';
@@ -50,7 +52,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             brightness: Brightness.light,
           ),
           darkTheme: ThemeData.dark(),
-          initialRoute: Routes.homeScreen,
+          initialRoute: Routes.rootScreen,
           debugShowCheckedModeBanner: false,
           defaultTransition: Transition.rightToLeft,
           transitionDuration: const Duration(
@@ -64,6 +66,14 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             GetPage(
               name: Routes.homeScreen,
               page: () => const HomeScreen(),
+            ),
+            GetPage(
+              name: Routes.rootScreen,
+              page: () => const RootScreen(),
+            ),
+            GetPage(
+              name: Routes.settingsScreen,
+              page: () => const SettingsScreen(),
             ),
           ],
         ),

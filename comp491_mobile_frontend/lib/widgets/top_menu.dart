@@ -16,16 +16,24 @@ class TopMenu extends StatelessWidget {
       width: 375.w,
       height: 65.h,
       padding: EdgeInsets.symmetric(horizontal: 24.w),
-      child: Row(
+      child: Stack(
         children: [
-          BackButtonWidget(
-            asset: 'assets/icons/backbuttondark.png',
+          Padding(
+            padding: EdgeInsets.only(top: 14.h),
+            child: BackButtonWidget(
+              asset: 'assets/icons/leftArrowDark.png',
+            ),
           ),
-          AutoSizeText(
-            text,
-            style: TextStyles.mainTextStyle
-                .copyWith(fontSize: 32.sp, fontWeight: FontWeight.w400),
-          )
+          Container(
+            width: 375.w,
+            child: Center(
+              child: AutoSizeText(
+                text,
+                style: TextStyles.mainTextStyle
+                    .copyWith(fontSize: 32.sp, fontWeight: FontWeight.w400),
+              ),
+            ),
+          ),
         ],
       ),
     );

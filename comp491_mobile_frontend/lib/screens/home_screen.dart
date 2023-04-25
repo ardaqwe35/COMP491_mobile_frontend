@@ -14,9 +14,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      body: Container(
-        width: 375.w,
-        height: 812.h,
+      body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -28,16 +26,19 @@ class HomeScreen extends StatelessWidget {
               child: SearchWidget(),
             ),
             SizedBox(
-              height: 24.h,
+              height: 8.h,
             ),
             PostWidget(
                 type: PostType.assetAndText,
-                asset: "assets/icons/camera.png",
-                text: "SDFGHFJK",
+                asset: "assets/images/fluffy3x.png",
+                text: "Look how amazing I am! It is a great day to be a bnuuy!",
                 profileName: "asdsad",
                 profileUrl: "asd"),
-            Spacer(),
-            TabbarWidget(),
+            PostWidget(
+                type: PostType.assetOnly,
+                asset: "assets/images/fluffy3x.png",
+                profileName: "asdsad",
+                profileUrl: "asd"),
           ],
         ),
       ),

@@ -30,12 +30,12 @@ class PostWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 375.w,
-      height: 475.h,
+      height: 431.h,
       child: Column(
         children: [
           Container(
             width: 375.w,
-            height: 1,
+            height: 0.2,
             decoration: BoxDecoration(
                 color: AppColors.darkBackgroundColor.withOpacity(0.3)),
           ),
@@ -86,7 +86,7 @@ class PostWidget extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 20.h,
+            height: 10.h,
           ),
           /* content area */
           Padding(
@@ -107,6 +107,9 @@ class PostWidget extends StatelessWidget {
                 )
               ],
             ),
+          ),
+          SizedBox(
+            height: 16.h,
           ),
           /* bottom row */
           Padding(
@@ -169,6 +172,7 @@ class ContentWidget extends StatelessWidget {
         children: [
           Container(
             width: 327.w,
+            height: 110.h,
             child: AutoSizeText(
               text ?? "",
               style: TextStyles.mainTextStyle,
@@ -182,7 +186,13 @@ class ContentWidget extends StatelessWidget {
                   height: 206.h,
                   decoration:
                       BoxDecoration(borderRadius: BorderRadius.circular(10.sp)),
-                  child: Image.asset(asset!),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10.sp),
+                    child: Image.asset(
+                      asset!,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 )
               : Container()
         ],
