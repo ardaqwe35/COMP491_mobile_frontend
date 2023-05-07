@@ -12,6 +12,7 @@ import 'package:get/get.dart';
 class PostWidget extends StatelessWidget {
   final String? asset;
   final String? profileAsset;
+  final String? assetUrl;
   final String? text;
   final PostType type;
   final String profileName;
@@ -24,7 +25,8 @@ class PostWidget extends StatelessWidget {
       required this.profileUrl,
       this.asset,
       this.text,
-      this.profileAsset});
+      this.profileAsset,
+      this.assetUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -99,11 +101,17 @@ class PostWidget extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10.sp),
                   ),
-                  child: ContentWidget(
-                    type: type,
-                    asset: asset,
-                    text: text,
-                  ),
+                  child: (assetUrl != null)
+                      ? ContentNetworkWidget(
+                          type: type,
+                          assetUrl: assetUrl,
+                          text: text,
+                        )
+                      : ContentWidget(
+                          type: type,
+                          asset: asset,
+                          text: text,
+                        ),
                 )
               ],
             ),
@@ -205,6 +213,59 @@ class ContentWidget extends StatelessWidget {
               decoration:
                   BoxDecoration(borderRadius: BorderRadius.circular(10.sp)),
               child: Image.asset(asset!),
+            )
+          : Container();
+    }
+  }
+}
+
+class ContentNetworkWidget extends StatelessWidget {
+  final String? text;
+  final String? assetUrl;
+  final PostType type;
+  const ContentNetworkWidget(
+      {super.key, this.text, this.assetUrl, required this.type});
+
+  @override
+  Widget build(BuildContext context) {
+    if (type == PostType.assetAndText) {
+      return Column(
+        children: [
+          Container(
+            width: 327.w,
+            height: 110.h,
+            child: AutoSizeText(
+              text ?? "",
+              style: TextStyles.mainTextStyle,
+              maxLines: 4,
+              textAlign: TextAlign.start,
+            ),
+          ),
+          assetUrl != null
+              ? Container(
+                  width: 327.h,
+                  height: 206.h,
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(10.sp)),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10.sp),
+                    child: Image.network(
+                      assetUrl!,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                )
+              : Container()
+        ],
+      );
+    } else {
+      return assetUrl != null
+          ? Container(
+              width: 327.h,
+              height: 327.h,
+              decoration:
+                  BoxDecoration(borderRadius: BorderRadius.circular(10.sp)),
+              child: Image.network(assetUrl!),
             )
           : Container();
     }

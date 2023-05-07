@@ -1,4 +1,5 @@
 import 'package:comp491_mobile_frontend/constants/app_colors.dart';
+import 'package:comp491_mobile_frontend/screens/sign_up_screen.dart';
 import 'package:comp491_mobile_frontend/widgets/post_widget.dart';
 import 'package:comp491_mobile_frontend/widgets/search_widget.dart';
 import 'package:comp491_mobile_frontend/widgets/tabbar_widget.dart';
@@ -6,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -23,7 +25,12 @@ class HomeScreen extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 24.w),
-              child: SearchWidget(),
+              child: GestureDetector(
+                child: SearchWidget(),
+                onTap: () {
+                  Get.to(SignUpScreen());
+                },
+              ),
             ),
             SizedBox(
               height: 8.h,
