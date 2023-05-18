@@ -13,18 +13,21 @@ class SettingsItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 327.w,
-      height: 60.h,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15.sp),
-        border: Border.all(width: 1.w, color: Colors.black.withOpacity(0.8)),
-        color: AppColors.secondColor,
-      ),
-      child: Center(
-        child: AutoSizeText(
-          text,
-          style: TextStyles.mainTextStyle,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: 327.w,
+        height: 60.h,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15.sp),
+          border: Border.all(width: 1.w, color: Colors.black.withOpacity(0.8)),
+          color: AppColors.secondColor,
+        ),
+        child: Center(
+          child: AutoSizeText(
+            text,
+            style: TextStyles.mainTextStyle,
+          ),
         ),
       ),
     );

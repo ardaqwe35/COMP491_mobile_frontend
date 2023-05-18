@@ -1,6 +1,9 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:comp491_mobile_frontend/constants/app_colors.dart';
+import 'package:comp491_mobile_frontend/constants/routes.dart';
 import 'package:comp491_mobile_frontend/constants/text_styles.dart';
 import 'package:comp491_mobile_frontend/screens/create_account_screen.dart';
+import 'package:comp491_mobile_frontend/screens/root_screen.dart';
 import 'package:comp491_mobile_frontend/widgets/main_button.dart';
 import 'package:comp491_mobile_frontend/widgets/top_menu.dart';
 import 'package:flutter/material.dart';
@@ -26,9 +29,20 @@ class SignUpScreen extends StatelessWidget {
             SizedBox(
               height: 48.h,
             ),
-            TopMenu(text: "Sign Up/Login"),
+            Padding(
+              padding: EdgeInsets.all(24.w),
+              child: Center(
+                child: AutoSizeText(
+                  "Sign Up/Login",
+                  maxLines: 1,
+                  textAlign: TextAlign.center,
+                  style: TextStyles.mainTextStyle
+                      .copyWith(fontSize: 32.sp, fontWeight: FontWeight.w400),
+                ),
+              ),
+            ),
             SizedBox(
-              height: 36.h,
+              height: 12.h,
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 24.w),
@@ -105,7 +119,11 @@ class SignUpScreen extends StatelessWidget {
                   ),
                   MainButton(
                     label: "Login",
-                    onTap: () {},
+                    onTap: () {
+                      //TODO MANAGE LOGIN
+                      //if success
+                      Get.offAllNamed(Routes.rootScreen);
+                    },
                     isDisable: false,
                     labelStyle:
                         TextStyles.mainTextStyle.copyWith(color: Colors.white),

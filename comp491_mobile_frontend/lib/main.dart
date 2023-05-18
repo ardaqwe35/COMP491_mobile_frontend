@@ -3,8 +3,12 @@ import 'package:comp491_mobile_frontend/constants/routes.dart';
 import 'package:comp491_mobile_frontend/constants/text_styles.dart';
 import 'package:comp491_mobile_frontend/screens/create_screen.dart';
 import 'package:comp491_mobile_frontend/screens/home_screen.dart';
+import 'package:comp491_mobile_frontend/screens/metamask_info_screen.dart';
+import 'package:comp491_mobile_frontend/screens/metamask_screen.dart';
+import 'package:comp491_mobile_frontend/screens/onboarding_screen.dart';
 import 'package:comp491_mobile_frontend/screens/root_screen.dart';
 import 'package:comp491_mobile_frontend/screens/settings_screen.dart';
+import 'package:comp491_mobile_frontend/screens/sign_up_screen.dart';
 import 'package:comp491_mobile_frontend/widgets/back_button.dart';
 import 'package:comp491_mobile_frontend/widgets/main_button.dart';
 import 'package:comp491_mobile_frontend/widgets/post_widget.dart';
@@ -52,7 +56,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             brightness: Brightness.light,
           ),
           darkTheme: ThemeData.dark(),
-          initialRoute: Routes.rootScreen,
+          //assign initial route based on prev login from hiveservice
+          initialRoute: Routes.onboardingScreen,
           debugShowCheckedModeBanner: false,
           defaultTransition: Transition.rightToLeft,
           transitionDuration: const Duration(
@@ -75,6 +80,19 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
               name: Routes.settingsScreen,
               page: () => const SettingsScreen(),
             ),
+            GetPage(
+              name: Routes.onboardingScreen,
+              page: () => const OnboardingScreen(),
+            ),
+            GetPage(
+              name: Routes.connectWalletScreen,
+              page: () => const MetamaskScreen(),
+            ),
+            GetPage(
+                name: Routes.signUpScreen, page: () => const SignUpScreen()),
+            GetPage(
+                name: Routes.metamaskInfoScreen,
+                page: () => const MetamaskInfoScreen())
           ],
         ),
       ),

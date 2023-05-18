@@ -1,4 +1,5 @@
 import 'package:comp491_mobile_frontend/constants/app_colors.dart';
+import 'package:comp491_mobile_frontend/screens/onboarding_screen.dart';
 import 'package:comp491_mobile_frontend/screens/sign_up_screen.dart';
 import 'package:comp491_mobile_frontend/widgets/post_widget.dart';
 import 'package:comp491_mobile_frontend/widgets/search_widget.dart';
@@ -28,7 +29,7 @@ class HomeScreen extends StatelessWidget {
               child: GestureDetector(
                 child: SearchWidget(),
                 onTap: () {
-                  Get.to(SignUpScreen());
+                  Get.to(OnboardingScreen());
                 },
               ),
             ),
