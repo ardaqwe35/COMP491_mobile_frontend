@@ -1,5 +1,8 @@
 import 'package:comp491_mobile_frontend/constants/app_colors.dart';
+import 'package:comp491_mobile_frontend/constants/routes.dart';
 import 'package:comp491_mobile_frontend/constants/text_styles.dart';
+import 'package:comp491_mobile_frontend/controllers/popup_controller.dart';
+import 'package:comp491_mobile_frontend/controllers/register_controller.dart';
 import 'package:comp491_mobile_frontend/screens/metamask_screen.dart';
 import 'package:comp491_mobile_frontend/widgets/settings_item.dart';
 import 'package:comp491_mobile_frontend/widgets/top_menu.dart';
@@ -32,7 +35,7 @@ class SettingsScreen extends StatelessWidget {
                 height: 24.h,
               ),
               Text(
-                "General",
+                "Account",
                 style: TextStyles.mainTextStyle
                     .copyWith(fontWeight: FontWeight.w600),
               ),
@@ -49,9 +52,24 @@ class SettingsScreen extends StatelessWidget {
                 height: 16.h,
               ),
               SettingsItem(
-                  text: "Dark Mode (coming soon)",
+                  text: "Sign Out",
                   onTap: () {
-                    //navigate to wallet
+                    //navigate to wallet,
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return Get.put(PopupController()).buildPopup(
+                              context,
+                              'assets/images/fluffy.png',
+                              "Are you sure to sign out?",
+                              "",
+                              "No, go back",
+                              "Yes, sign out",
+                              () => Get.back(), () {
+                            Get.put(RegisterController()).signOut();
+                            Get.offAllNamed(Routes.onboardingScreen);
+                          });
+                        });
                   }),
               SizedBox(
                 height: 16.h,

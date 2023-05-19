@@ -34,8 +34,15 @@ class PopupController extends GetxController {
     }
   }
 
-  Widget buildPopup(BuildContext context, String asset, String text,
-      String text2, String buttonLabel) {
+  Widget buildPopup(
+      BuildContext context,
+      String asset,
+      String text,
+      String text2,
+      String buttonLabel,
+      String buttonLabel2,
+      VoidCallback onTapPositive,
+      VoidCallback onTapNegative) {
     return Center(
       child: Material(
         borderRadius: BorderRadius.circular(15.sp),
@@ -52,7 +59,7 @@ class PopupController extends GetxController {
             child: Column(
               children: [
                 Image.asset('assets/images/fluffy.png',
-                    fit: BoxFit.contain, width: 327.w, height: 198.h),
+                    fit: BoxFit.contain, width: 375.w, height: 198.h),
                 Padding(
                   padding: EdgeInsets.fromLTRB(24.w, 14.h, 24.w, 0),
                   child: Center(
@@ -87,13 +94,27 @@ class PopupController extends GetxController {
                   padding: EdgeInsets.fromLTRB(20.w, 0, 20.w, 0),
                   child: MainButton(
                     label: buttonLabel,
-                    onTap: () {
-                      Get.back();
-                    },
+                    onTap: onTapPositive,
                     isDisable: false,
                     labelStyle:
                         TextStyles.mainTextStyle.copyWith(color: Colors.white),
                     color: AppColors.mainColor,
+                  ),
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(20.w, 0, 20.w, 20.h),
+                  child: MainButton(
+                    label: buttonLabel2,
+                    onTap: onTapNegative,
+                    isDisable: false,
+                    labelStyle: TextStyles.mainTextStyle
+                        .copyWith(color: AppColors.mainColor),
+                    color: Colors.transparent,
+                    borderWidth: 1.sp,
+                    borderColor: AppColors.mainColor,
                   ),
                 ),
               ],

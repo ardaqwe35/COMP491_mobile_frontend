@@ -1,5 +1,7 @@
 import 'package:comp491_mobile_frontend/constants/routes.dart';
 import 'package:comp491_mobile_frontend/controllers/popup_controller.dart';
+import 'package:comp491_mobile_frontend/services/firestore_util.dart';
+import 'package:comp491_mobile_frontend/services/users_response.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,6 +20,9 @@ class RegisterController extends GetxController {
         password: password,
       );
       PopupController.showSnackbar("Register successful!");
+      if (_auth.currentUser?.uid != null) {
+        createUserDocumentIfNeeded(_auth.currentUser!.uid);
+      }
       await Future.delayed(Duration(seconds: 2));
       Get.back();
       return userCredential;
@@ -37,6 +42,10 @@ class RegisterController extends GetxController {
         password: password,
       );
       PopupController.showSnackbar("Login successful!");
+      if (_auth.currentUser?.uid != null) {
+        createUserDocumentIfNeeded(_auth.currentUser!.uid);
+      }
+
       await Future.delayed(Duration(seconds: 1));
       Get.toNamed(Routes.rootScreen);
       return userCredential;
@@ -68,6 +77,14 @@ class RegisterController extends GetxController {
       Future<UserCredential?> cred = signUp(email, password);
     } else {
       //show popup
+    }
+  }
+
+  Future<void> createUserDocumentIfNeeded(String uid) async {
+    var response = await FirestoreUtil.instance.getUsersResponseWithUid(0, uid);
+    if (response.runtimeType == UsersResponse) {
+    } else {
+      FirestoreUtil.instance.createNewUserDocument();
     }
   }
 }

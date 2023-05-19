@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'dart:ffi';
 
 import 'package:comp491_mobile_frontend/constants/routes.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:walletconnect_dart/walletconnect_dart.dart';
@@ -24,7 +26,6 @@ class MetamaskController extends GetxController {
           ]));
 
   loginUsingMetamask() async {
-    isWalletConnected.value = WalletStatus.hasCurrency;
     if (!connector.connected) {
       try {
         var session = await connector.createSession(onDisplayUri: (uri) async {
@@ -32,7 +33,14 @@ class MetamaskController extends GetxController {
           await launchUrlString(uri, mode: LaunchMode.externalApplication);
         });
         currentSessionStatus.value = session;
+        walletAdress.value = currentSessionStatus.value.accounts[0];
         isWalletConnected.value = WalletStatus.connected;
+        await fetchData();
+        if (walletBalance.value != 0.0) {
+          isWalletConnected.value = WalletStatus.hasCurrency;
+        } else {
+          isWalletConnected.value = WalletStatus.noCurrency;
+        }
         //check balance and update status
       } catch (exp) {
         print(exp);
@@ -45,7 +53,11 @@ class MetamaskController extends GetxController {
   }
 
   void continueTapped() {
-    Get.offAllNamed(Routes.signUpScreen);
+    if (FirebaseAuth.instance.currentUser != null) {
+      Get.offAllNamed(Routes.rootScreen);
+    } else {
+      Get.offAllNamed(Routes.signUpScreen);
+    }
   }
 
   Future<void> fetchData() async {
@@ -60,7 +72,7 @@ class MetamaskController extends GetxController {
     if (response.statusCode == 200) {
       // API call was successful
       final responseData = json.decode(response.body);
-      walletBalance.value = responseData["balance"] ?? 0;
+      walletBalance.value = double.parse(responseData["balance"]);
     } else {
       // API call failed
       print('API request failed with status code: ${response.statusCode}');
@@ -68,13 +80,15 @@ class MetamaskController extends GetxController {
   }
 }
 
-enum WalletStatus { disconnected, connected, hasCurrency }
+enum WalletStatus { disconnected, connected, hasCurrency, noCurrency }
 
 String walletStatusToString(WalletStatus status) {
   if (status == WalletStatus.disconnected) {
     return "Disconnected";
   } else if (status == WalletStatus.connected) {
     return "Connected";
+  } else if (status == WalletStatus.noCurrency) {
+    return "Connected but you have no currency!";
   } else if (status == WalletStatus.hasCurrency) {
     return "Connected and Verified!";
   } else {

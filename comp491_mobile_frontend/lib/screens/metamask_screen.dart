@@ -83,7 +83,7 @@ class MetamaskScreen extends StatelessWidget {
                   child: MainButton(
                     label: "Connect to Metamask",
                     onTap: () {
-                      controller.continueTapped();
+                      controller.connectMetamaskTapped();
                     },
                     isDisable: false,
                     labelStyle:
@@ -108,6 +108,13 @@ class MetamaskScreen extends StatelessWidget {
         ),
       );
     } else if (controller.isWalletConnected.value == WalletStatus.hasCurrency) {
+      children.add(
+        Text(
+          "Balance: ${controller.walletBalance.value} ZATE",
+          style: TextStyles.mainTextStyle.copyWith(color: AppColors.orange),
+        ),
+      );
+    } else if (controller.isWalletConnected.value == WalletStatus.noCurrency) {
       children.add(
         Text(
           "Balance: ${controller.walletBalance.value} ZATE",

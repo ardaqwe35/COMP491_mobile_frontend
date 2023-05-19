@@ -43,6 +43,9 @@ class MainButton extends StatelessWidget {
           decoration: BoxDecoration(
             color: color ?? AppColors.mainColor,
             borderRadius: BorderRadius.circular(30.sp),
+            border: (borderWidth != null && borderColor != null)
+                ? Border.all(color: borderColor!, width: borderWidth!)
+                : null,
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,

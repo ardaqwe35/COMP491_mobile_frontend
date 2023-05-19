@@ -7,6 +7,7 @@ import 'package:comp491_mobile_frontend/screens/onboarding_screen.dart';
 import 'package:comp491_mobile_frontend/screens/root_screen.dart';
 import 'package:comp491_mobile_frontend/screens/settings_screen.dart';
 import 'package:comp491_mobile_frontend/screens/sign_up_screen.dart';
+import 'package:comp491_mobile_frontend/services/firestore_util.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,6 +17,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  FirestoreUtil.instance.init();
   runApp(const MyApp());
 }
 
@@ -30,6 +32,14 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   void initState() {
     WidgetsBinding.instance.addObserver(this);
     super.initState();
+  }
+
+  bool isLoggedIn() {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user == null) {
+      return false;
+    }
+    return true;
   }
 
   @override
@@ -50,8 +60,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             brightness: Brightness.light,
           ),
           darkTheme: ThemeData.dark(),
-          //assign initial route based on prev login from hiveservice
-          initialRoute: Routes.onboardingScreen,
+          initialRoute:
+              isLoggedIn() ? Routes.rootScreen : Routes.onboardingScreen,
           debugShowCheckedModeBanner: false,
           defaultTransition: Transition.rightToLeft,
           transitionDuration: const Duration(

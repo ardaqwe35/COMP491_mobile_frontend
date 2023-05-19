@@ -48,6 +48,18 @@ class User {
     };
   }
 
+  factory User.empty() {
+    return User(
+        id: "",
+        ppUrl: "",
+        bannerUrl: "",
+        name: "",
+        gildCount: 0,
+        followerCount: 0,
+        previousPosts: [],
+        followers: []);
+  }
+
   @override
   String toString() {
     return 'User(id: $id, ppUrl: $ppUrl, bannerUrl: $bannerUrl, name: $name, gildCount: $gildCount, followerCount: $followerCount, previousPosts: $previousPosts, followers: $followers)';

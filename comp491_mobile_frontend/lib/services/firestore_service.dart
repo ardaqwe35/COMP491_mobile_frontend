@@ -1,13 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class FirestoreService {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   static final FirestoreService instance = FirestoreService();
 
-  String get userId => "test";
+  String get userId => FirebaseAuth.instance.currentUser?.uid ?? "";
 
   late Map<String, CollectionReference> collection = {
-    'users_document': firestore.collection("users_document"),
+    'users-response': firestore.collection("users-response"),
+    'posts': firestore.collection("posts"),
   };
 
   Future getDocumentById(String collectionName, String id) async {
