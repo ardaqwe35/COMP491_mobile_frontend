@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:comp491_mobile_frontend/constants/app_colors.dart';
 import 'package:comp491_mobile_frontend/constants/routes.dart';
 import 'package:comp491_mobile_frontend/constants/text_styles.dart';
+import 'package:comp491_mobile_frontend/controllers/register_controller.dart';
 import 'package:comp491_mobile_frontend/screens/create_account_screen.dart';
 import 'package:comp491_mobile_frontend/screens/root_screen.dart';
 import 'package:comp491_mobile_frontend/widgets/main_button.dart';
@@ -17,6 +18,7 @@ class SignUpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    RegisterController controller = Get.put(RegisterController());
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       body: Container(
@@ -67,6 +69,7 @@ class SignUpScreen extends StatelessWidget {
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 16.w),
                       child: TextField(
+                        controller: controller.emailController,
                         decoration: InputDecoration(
                             border: InputBorder.none,
                             hintStyle: TextStyles.secondTextStyle.copyWith(
@@ -100,6 +103,7 @@ class SignUpScreen extends StatelessWidget {
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 16.w),
                       child: TextField(
+                        controller: controller.passwordController,
                         obscureText: true,
                         decoration: InputDecoration(
                             border: InputBorder.none,
@@ -115,14 +119,18 @@ class SignUpScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 280.h,
-                  ),
+                      height:
+                          320.h - MediaQuery.of(context).viewInsets.bottom > 0
+                              ? 320.h - MediaQuery.of(context).viewInsets.bottom
+                              : 320.h),
                   MainButton(
                     label: "Login",
                     onTap: () {
                       //TODO MANAGE LOGIN
+                      controller.manageLogin(
+                          controller.emailController.value.text,
+                          controller.passwordController.value.text);
                       //if success
-                      Get.offAllNamed(Routes.rootScreen);
                     },
                     isDisable: false,
                     labelStyle:

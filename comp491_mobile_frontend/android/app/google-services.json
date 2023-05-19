@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "313515145040",
+    "project_id": "comp491-subnet-bridge-app",
+    "storage_bucket": "comp491-subnet-bridge-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:313515145040:android:782f82f1553696db9c1e55",
+        "android_client_info": {
+          "package_name": "com.example.comp491_mobile_frontend"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "313515145040-5ohltjrat6pvul8vj28172qm09f8k3uo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9LKzFKlzlnliwZiIp4BFhe5mAMO-DIh8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "313515145040-5ohltjrat6pvul8vj28172qm09f8k3uo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

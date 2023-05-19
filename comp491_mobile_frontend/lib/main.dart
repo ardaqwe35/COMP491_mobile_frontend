@@ -1,6 +1,4 @@
-import 'package:comp491_mobile_frontend/constants/app_colors.dart';
 import 'package:comp491_mobile_frontend/constants/routes.dart';
-import 'package:comp491_mobile_frontend/constants/text_styles.dart';
 import 'package:comp491_mobile_frontend/screens/create_screen.dart';
 import 'package:comp491_mobile_frontend/screens/home_screen.dart';
 import 'package:comp491_mobile_frontend/screens/metamask_info_screen.dart';
@@ -9,19 +7,15 @@ import 'package:comp491_mobile_frontend/screens/onboarding_screen.dart';
 import 'package:comp491_mobile_frontend/screens/root_screen.dart';
 import 'package:comp491_mobile_frontend/screens/settings_screen.dart';
 import 'package:comp491_mobile_frontend/screens/sign_up_screen.dart';
-import 'package:comp491_mobile_frontend/widgets/back_button.dart';
-import 'package:comp491_mobile_frontend/widgets/main_button.dart';
-import 'package:comp491_mobile_frontend/widgets/post_widget.dart';
-import 'package:comp491_mobile_frontend/widgets/search_widget.dart';
-import 'package:comp491_mobile_frontend/widgets/tabbar_button.dart';
-import 'package:comp491_mobile_frontend/widgets/tabbar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
