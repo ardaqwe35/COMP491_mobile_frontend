@@ -21,64 +21,68 @@ class AboutDevelopersScreen extends StatelessWidget {
       body: Container(
         width: 375.w,
         height: 812.h,
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 24.w),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: 48.h,
+        child: Column(
+          children: [
+            SizedBox(
+              height: 48.h,
+            ),
+            TopMenu(text: "About Devs"),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 24.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: 24.h,
+                  ),
+                  Text(
+                    "Developer of This Application:",
+                    style: TextStyles.mainTextStyle
+                        .copyWith(fontWeight: FontWeight.w600),
+                  ),
+                  SizedBox(
+                    height: 16.h,
+                  ),
+                  SettingsItem(
+                      text: "Metin Arda Oral",
+                      onTap: () {
+                        launchUrl(Uri(
+                          scheme: 'https',
+                          host: 'linkedin.com',
+                          path: '/in/metinardaoral',
+                        ));
+                      }),
+                  SizedBox(
+                    height: 16.h,
+                  ),
+                  Text(
+                    "Other Developers:",
+                    style: TextStyles.mainTextStyle
+                        .copyWith(fontWeight: FontWeight.w600),
+                  ),
+                  SizedBox(
+                    height: 16.h,
+                  ),
+                  SettingsItem(text: "Tolgay Dulger", onTap: () {}),
+                  SizedBox(
+                    height: 16.h,
+                  ),
+                  SettingsItem(text: "Ziya Icoz", onTap: () {}),
+                  SizedBox(
+                    height: 16.h,
+                  ),
+                  SettingsItem(text: "M. Enes Erciyes", onTap: () {}),
+                  SizedBox(
+                    height: 16.h,
+                  ),
+                  Text(
+                    "Made for COMP491 finishing project @Koc University.",
+                    style: TextStyles.mainTextStyle,
+                  ),
+                ],
               ),
-              TopMenu(text: "About Devs"),
-              SizedBox(
-                height: 24.h,
-              ),
-              Text(
-                "Developer of This Application:",
-                style: TextStyles.mainTextStyle
-                    .copyWith(fontWeight: FontWeight.w600),
-              ),
-              SizedBox(
-                height: 16.h,
-              ),
-              SettingsItem(
-                  text: "Metin Arda Oral",
-                  onTap: () {
-                    launchUrl(Uri(
-                      scheme: 'https',
-                      host: 'linkedin.com',
-                      path: '/in/metinardaoral',
-                    ));
-                  }),
-              SizedBox(
-                height: 16.h,
-              ),
-              Text(
-                "Other Developers:",
-                style: TextStyles.mainTextStyle
-                    .copyWith(fontWeight: FontWeight.w600),
-              ),
-              SizedBox(
-                height: 16.h,
-              ),
-              SettingsItem(text: "Tolgay Dulger", onTap: () {}),
-              SizedBox(
-                height: 16.h,
-              ),
-              SettingsItem(text: "Ziya Icoz", onTap: () {}),
-              SizedBox(
-                height: 16.h,
-              ),
-              SettingsItem(text: "M. Enes Erciyes", onTap: () {}),
-              SizedBox(
-                height: 16.h,
-              ),
-              Text(
-                "Made for COMP491 finishing project @Koc University.",
-                style: TextStyles.mainTextStyle,
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

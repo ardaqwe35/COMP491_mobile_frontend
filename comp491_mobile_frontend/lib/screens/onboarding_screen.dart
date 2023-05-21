@@ -62,7 +62,8 @@ class OnboardingScreen extends StatelessWidget {
                   child: MainButton(
                       label: "Continue",
                       onTap: () {
-                        Get.toNamed(Routes.connectWalletScreen);
+                        Get.toNamed(Routes.connectWalletScreen,
+                            arguments: {"source": Routes.onboardingScreen});
                       },
                       labelStyle: TextStyles.mainTextStyle
                           .copyWith(color: AppColors.white),

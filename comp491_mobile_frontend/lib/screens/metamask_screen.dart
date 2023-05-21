@@ -1,4 +1,5 @@
 import 'package:comp491_mobile_frontend/constants/app_colors.dart';
+import 'package:comp491_mobile_frontend/constants/routes.dart';
 import 'package:comp491_mobile_frontend/constants/text_styles.dart';
 import 'package:comp491_mobile_frontend/controllers/metamask_controller.dart';
 import 'package:comp491_mobile_frontend/screens/create_account_screen.dart';
@@ -30,7 +31,9 @@ class MetamaskScreen extends StatelessWidget {
               height: 48.h,
             ),
             TopMenu(
-              text: "Connect Wallet",
+              text: Get.arguments["source"] != Routes.settingsScreen
+                  ? "Connect Wallet"
+                  : "Wallet Info",
               info: true,
               infoOnTap: () {
                 Get.to(MetamaskInfoScreen());
@@ -60,38 +63,41 @@ class MetamaskScreen extends StatelessWidget {
               }),
             ),
             Spacer(),
-            Obx(() {
-              if (controller.isWalletConnected.value ==
-                  WalletStatus.hasCurrency) {
-                return Padding(
-                  padding:
-                      EdgeInsets.only(bottom: 45.h, left: 24.w, right: 24.w),
-                  child: MainButton(
-                    label: "Continue",
-                    onTap: () {
-                      controller.continueTapped();
-                    },
-                    isDisable: false,
-                    labelStyle:
-                        TextStyles.mainTextStyle.copyWith(color: Colors.white),
-                  ),
-                );
-              } else {
-                return Padding(
-                  padding:
-                      EdgeInsets.only(bottom: 45.h, left: 24.w, right: 24.w),
-                  child: MainButton(
-                    label: "Connect to Metamask",
-                    onTap: () {
-                      controller.continueTapped();
-                    },
-                    isDisable: false,
-                    labelStyle:
-                        TextStyles.mainTextStyle.copyWith(color: Colors.white),
-                  ),
-                );
-              }
-            }),
+            Visibility(
+              visible: Get.arguments["source"] != Routes.settingsScreen,
+              child: Obx(() {
+                if (controller.isWalletConnected.value ==
+                    WalletStatus.hasCurrency) {
+                  return Padding(
+                    padding:
+                        EdgeInsets.only(bottom: 45.h, left: 24.w, right: 24.w),
+                    child: MainButton(
+                      label: "Continue",
+                      onTap: () {
+                        controller.continueTapped();
+                      },
+                      isDisable: false,
+                      labelStyle: TextStyles.mainTextStyle
+                          .copyWith(color: Colors.white),
+                    ),
+                  );
+                } else {
+                  return Padding(
+                    padding:
+                        EdgeInsets.only(bottom: 45.h, left: 24.w, right: 24.w),
+                    child: MainButton(
+                      label: "Connect to Metamask",
+                      onTap: () {
+                        controller.continueTapped();
+                      },
+                      isDisable: false,
+                      labelStyle: TextStyles.mainTextStyle
+                          .copyWith(color: Colors.white),
+                    ),
+                  );
+                }
+              }),
+            ),
           ],
         ),
       ),
