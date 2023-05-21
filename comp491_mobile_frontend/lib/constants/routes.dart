@@ -7,4 +7,5 @@ class Routes {
   static String connectWalletScreen = '/connectWalletScreen';
   static String metamaskInfoScreen = '/metamaskInfoScreen';
   static String signUpScreen = '/signUpScreen';
+  static String aboutDevelopersScreen = '/aboutDevelopersScreen';
 }

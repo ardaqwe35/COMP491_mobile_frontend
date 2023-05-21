@@ -1,4 +1,5 @@
 import 'package:comp491_mobile_frontend/constants/routes.dart';
+import 'package:comp491_mobile_frontend/screens/about_developers_screen.dart';
 import 'package:comp491_mobile_frontend/screens/create_screen.dart';
 import 'package:comp491_mobile_frontend/screens/home_screen.dart';
 import 'package:comp491_mobile_frontend/screens/metamask_info_screen.dart';
@@ -96,7 +97,10 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
                 name: Routes.signUpScreen, page: () => const SignUpScreen()),
             GetPage(
                 name: Routes.metamaskInfoScreen,
-                page: () => const MetamaskInfoScreen())
+                page: () => const MetamaskInfoScreen()),
+            GetPage(
+                name: Routes.aboutDevelopersScreen,
+                page: () => const AboutDevelopersScreen())
           ],
         ),
       ),

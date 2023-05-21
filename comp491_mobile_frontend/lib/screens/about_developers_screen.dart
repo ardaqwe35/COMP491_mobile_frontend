@@ -7,13 +7,12 @@ import 'package:comp491_mobile_frontend/screens/metamask_screen.dart';
 import 'package:comp491_mobile_frontend/widgets/settings_item.dart';
 import 'package:comp491_mobile_frontend/widgets/top_menu.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-class SettingsScreen extends StatelessWidget {
-  const SettingsScreen({super.key});
+class AboutDevelopersScreen extends StatelessWidget {
+  const AboutDevelopersScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,12 +29,12 @@ class SettingsScreen extends StatelessWidget {
               SizedBox(
                 height: 48.h,
               ),
-              TopMenu(text: "Settings"),
+              TopMenu(text: "About Devs"),
               SizedBox(
                 height: 24.h,
               ),
               Text(
-                "Account",
+                "Developer of This Application:",
                 style: TextStyles.mainTextStyle
                     .copyWith(fontWeight: FontWeight.w600),
               ),
@@ -43,74 +42,41 @@ class SettingsScreen extends StatelessWidget {
                 height: 16.h,
               ),
               SettingsItem(
-                  text: "Manage Your Wallet",
+                  text: "Metin Arda Oral",
                   onTap: () {
-                    //navigate to wallet
-                    Get.to(MetamaskScreen());
-                  }),
-              SizedBox(
-                height: 16.h,
-              ),
-              SettingsItem(
-                  text: "Sign Out",
-                  onTap: () {
-                    //navigate to wallet,
-                    showDialog(
-                        context: context,
-                        builder: (context) {
-                          return Get.put(PopupController()).buildPopup(
-                              context,
-                              'assets/images/fluffy.png',
-                              "Are you sure to sign out?",
-                              "",
-                              "No, go back",
-                              "Yes, sign out",
-                              () => Get.back(), () {
-                            Get.put(RegisterController()).signOut();
-                            Get.offAllNamed(Routes.onboardingScreen);
-                          });
-                        });
+                    launchUrl(Uri(
+                      scheme: 'https',
+                      host: 'linkedin.com',
+                      path: '/in/metinardaoral',
+                    ));
                   }),
               SizedBox(
                 height: 16.h,
               ),
               Text(
-                "Support",
+                "Other Developers:",
                 style: TextStyles.mainTextStyle
                     .copyWith(fontWeight: FontWeight.w600),
               ),
               SizedBox(
                 height: 16.h,
               ),
-              SettingsItem(
-                  text: "About Developers",
-                  onTap: () {
-                    Get.toNamed(Routes.aboutDevelopersScreen);
-                  }),
+              SettingsItem(text: "Tolgay Dulger", onTap: () {}),
               SizedBox(
                 height: 16.h,
               ),
-              SettingsItem(
-                  text: "Contact Us",
-                  onTap: () {
-                    //navigate to wallet
-                  }),
+              SettingsItem(text: "Ziya Icoz", onTap: () {}),
               SizedBox(
                 height: 16.h,
               ),
-              SettingsItem(
-                  text: "Email Support",
-                  onTap: () {
-                    //navigate to wallet
-                  }),
+              SettingsItem(text: "M. Enes Erciyes", onTap: () {}),
               SizedBox(
                 height: 16.h,
               ),
-              SettingsItem(
-                  text: "Privacy & Terms",
-                  onTap: () {
-                    //navigate to wallet
-                  }),
+              Text(
+                "Made for COMP491 finishing project @Koc University.",
+                style: TextStyles.mainTextStyle,
+              ),
             ],
           ),
         ),
