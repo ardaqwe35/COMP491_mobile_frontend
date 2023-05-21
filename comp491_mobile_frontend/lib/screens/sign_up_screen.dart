@@ -70,6 +70,7 @@ class SignUpScreen extends StatelessWidget {
                       padding: EdgeInsets.symmetric(horizontal: 16.w),
                       child: TextField(
                         controller: controller.emailController,
+                        focusNode: controller.kbEmail.value,
                         decoration: InputDecoration(
                             border: InputBorder.none,
                             hintStyle: TextStyles.secondTextStyle.copyWith(
@@ -104,6 +105,7 @@ class SignUpScreen extends StatelessWidget {
                       padding: EdgeInsets.symmetric(horizontal: 16.w),
                       child: TextField(
                         controller: controller.passwordController,
+                        focusNode: controller.kbPassword.value,
                         obscureText: true,
                         decoration: InputDecoration(
                             border: InputBorder.none,
@@ -122,7 +124,7 @@ class SignUpScreen extends StatelessWidget {
                       height:
                           320.h - MediaQuery.of(context).viewInsets.bottom > 0
                               ? 320.h - MediaQuery.of(context).viewInsets.bottom
-                              : 320.h),
+                              : 30.h),
                   MainButton(
                     label: "Login",
                     onTap: () {
@@ -139,15 +141,24 @@ class SignUpScreen extends StatelessWidget {
                   SizedBox(
                     height: 16.h,
                   ),
-                  MainButton(
-                    label: "Create Account",
-                    onTap: () {
-                      Get.to(CreateAccountScreen());
-                    },
-                    isDisable: false,
-                    labelStyle:
-                        TextStyles.mainTextStyle.copyWith(color: Colors.white),
-                  ),
+                  Obx(() {
+                    if (controller.kbEmail.value.hasFocus ||
+                        controller.kbPassword.value.hasFocus) {
+                      return Container(
+                        height: 0,
+                      );
+                    } else {
+                      return MainButton(
+                        label: "Create Account",
+                        onTap: () {
+                          Get.to(CreateAccountScreen());
+                        },
+                        isDisable: false,
+                        labelStyle: TextStyles.mainTextStyle
+                            .copyWith(color: Colors.white),
+                      );
+                    }
+                  }),
                 ],
               ),
             ),

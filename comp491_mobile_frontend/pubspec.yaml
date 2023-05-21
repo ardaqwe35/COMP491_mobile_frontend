@@ -42,6 +42,7 @@ dependencies:
   url_launcher: ^6.1.11
   walletconnect_dart: ^0.0.11
   firebase_auth: ^4.6.1
+  flutter_keyboard_visibility: ^5.4.3
 
 dev_dependencies:
   flutter_test:

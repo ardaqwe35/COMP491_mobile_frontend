@@ -83,7 +83,7 @@ class MetamaskScreen extends StatelessWidget {
                   child: MainButton(
                     label: "Connect to Metamask",
                     onTap: () {
-                      controller.connectMetamaskTapped();
+                      controller.continueTapped();
                     },
                     isDisable: false,
                     labelStyle:

@@ -27,22 +27,24 @@ class HomeScreen extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 24.w),
               child: GestureDetector(
-                child: SearchWidget(),
+                child: const SearchWidget(),
                 onTap: () {
-                  Get.to(OnboardingScreen());
+                  Get.to(const OnboardingScreen());
                 },
               ),
             ),
             SizedBox(
               height: 8.h,
             ),
-            PostWidget(
+            const PostWidget(
+                key: ValueKey("examplePost1"),
                 type: PostType.assetAndText,
                 asset: "assets/images/fluffy3x.png",
                 text: "Look how amazing I am! It is a great day to be a bnuuy!",
                 profileName: "asdsad",
                 profileUrl: "asd"),
-            PostWidget(
+            const PostWidget(
+                key: ValueKey("examplePost2"),
                 type: PostType.assetOnly,
                 asset: "assets/images/fluffy3x.png",
                 profileName: "asdsad",

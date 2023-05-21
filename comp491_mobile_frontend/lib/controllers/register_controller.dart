@@ -10,6 +10,8 @@ class RegisterController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  Rx<FocusNode> kbEmail = FocusNode().obs;
+  Rx<FocusNode> kbPassword = FocusNode().obs;
 
   // Sign up with email and password
   Future<UserCredential?> signUp(String email, String password) async {
